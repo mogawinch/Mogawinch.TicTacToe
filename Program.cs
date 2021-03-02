@@ -26,15 +26,15 @@ namespace TicTacToeAI
 
                 while (!playBoard.IsFinished())
                 {
-                    playBoard.AddPlayer1Play(isRandom: false);
-                    player1.CalculateCurrentStateQuality(playBoard, player2.Pawn, 0.3, 0.9);
-                    player2.CalculateCurrentStateQuality(playBoard, player2.Pawn, 0.3, 0.9);
+                    playBoard.AddPlayer1Play(isRandom: true);
+                    player1.CalculateCurrentStateQuality(playBoard, player2.Pawn, 0.5, 0.9);
+                    player2.CalculateCurrentStateQuality(playBoard, player2.Pawn, 0.5, 0.9);
 
                     if (!playBoard.IsFinished()) 
                     {
-                        playBoard.AddPlayer2Play(isRandom: false);
-                        player1.CalculateCurrentStateQuality(playBoard, player1.Pawn, 0.3, 0.9);
-                        player2.CalculateCurrentStateQuality(playBoard, player1.Pawn, 0.3, 0.9);
+                        playBoard.AddPlayer2Play(isRandom: true);
+                        player1.CalculateCurrentStateQuality(playBoard, player1.Pawn, 0.5, 0.9);
+                        player2.CalculateCurrentStateQuality(playBoard, player1.Pawn, 0.5, 0.9);
                     }
                 }
 
@@ -71,7 +71,7 @@ namespace TicTacToeAI
                     }
 
                     playBoard.Add(player1.Pawn, play);
-                    player2.CalculateCurrentStateQuality(playBoard, player2.Pawn, 0.3, 0.9);
+                    player2.CalculateCurrentStateQuality(playBoard, player2.Pawn, 0.5, 0.9);
                     Console.WriteLine("\n--------- Player 1 Play ---------");
                     Console.Write(playBoard);
 
@@ -88,7 +88,7 @@ namespace TicTacToeAI
                     }
 
                     playBoard.AddPlayer2Play(isRandom: false);
-                    player2.CalculateCurrentStateQuality(playBoard, player1.Pawn, 0.3, 0.9);
+                    player2.CalculateCurrentStateQuality(playBoard, player1.Pawn, 0.5, 0.9);
                     Console.WriteLine("\n--------- AI Play ---------");
                     Console.Write(playBoard);
 

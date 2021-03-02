@@ -53,8 +53,8 @@ namespace TicTacToeAI
             if (board.TryGetWinner(out var winner))
                 return (winner.Pawn == Pawn ? 10 : -10) / multiplicator;
 
-            //if (board.IsComplete())
-            //    return 0.1;
+            if (board.IsComplete())
+                return -0.1;
 
             return 0;
         }
