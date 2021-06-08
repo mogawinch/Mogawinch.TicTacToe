@@ -10,9 +10,9 @@ namespace TicTacToeAI
     {
         static void Main(string[] args)
         {
-            var player1 = new PlayerAI("x");
+            var player1 = new Player("x");
             Console.WriteLine("Player 1 pawn : '" + player1.Pawn + "' ");
-            var player2 = new PlayerAI("o");
+            var player2 = new Player("o");
             Console.WriteLine("Player AI pawn : '" + player2.Pawn + "' ");
 
             var playBoard = new Board(player1, player2);

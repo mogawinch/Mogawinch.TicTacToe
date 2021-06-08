@@ -12,11 +12,11 @@ namespace TicTacToeAI
 
         public string[] BoardValue { get; }
 
-        public PlayerAI Player1 { get; }
+        public Player Player1 { get; }
 
-        public PlayerAI Player2 { get; }
+        public Player Player2 { get; }
         
-        public Board(PlayerAI player1, PlayerAI player2)
+        public Board(Player player1, Player player2)
         {
             Player1 = player1;
             Player2 = player2;
@@ -82,7 +82,7 @@ namespace TicTacToeAI
             return count;
         }
 
-        public bool TryGetWinner(out PlayerAI winner)
+        public bool TryGetWinner(out Player winner)
         {
             if (HasPlayerPawnWin(Player1.Pawn))
             {
@@ -196,7 +196,7 @@ namespace TicTacToeAI
             return possibleStates[rnd.Next(0, possibleStates.Count)];
         }
 
-        private int GetLogicalNextCaseForPlayer(PlayerAI player)
+        private int GetLogicalNextCaseForPlayer(Player player)
         {
             double? bestQ = null;
             var bestLocations = new List<int>();

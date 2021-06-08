@@ -4,13 +4,13 @@ using System.Linq;
 
 namespace TicTacToeAI
 {
-    public class PlayerAI
+    public class Player
     {
         public string Pawn { get; }
 
         public Dictionary<string, double> QualityBoard { get; } = new Dictionary<string, double>();
 
-        public PlayerAI(string pawn)
+        public Player(string pawn)
         {
             Pawn = pawn;
         }
