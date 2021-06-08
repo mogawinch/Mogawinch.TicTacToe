@@ -3,7 +3,7 @@ name: Publish Packages
 on:
   push:
     tags:
-       - '*'
+       - 'v*'
 
 jobs:
   build:
@@ -20,7 +20,7 @@ jobs:
     - name: Build
       run: dotnet build --configuration Release --no-restore
     - name: Publish Mogawinch.TicTacToe.Gameplay
-      uses: brandedoutcast/publish-nuget@v2.5.2
+      uses: rohith/publish-nuget@v2
       with:
           PROJECT_FILE_PATH: Mogawinch.TicTacToe.Gameplay/Mogawinch.TicTacToe.Gameplay.csproj
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
