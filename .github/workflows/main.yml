@@ -12,18 +12,8 @@ jobs:
       
     steps:
     - uses: actions/checkout@v2
-    - name: Fetch all history for all tags and branches
-      run: git fetch --prune --unshallow
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.9
-      with:
-          versionSpec: '5.1.x'
-    - name: Use GitVersion
-      id: gitversion # step id used as reference for output values
-      uses: gittools/actions/gitversion/execute@v0.9.9
-    - run: |
-        echo "NuGetVersionV2: ${{ steps.gitversion.outputs.nuGetVersionV2 }}"
-        echo "NuGetPreReleaseTagV2: ${{ steps.gitversion.outputs.CommitsSinceVersionSourcePadded }}"
+    - name: Set env
+      run: echo ::set-env name=RELEASE_VERSION::$(echo ${GITHUB_REF:10})
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
@@ -33,7 +23,7 @@ jobs:
     - name: Test with dotnet
       run: dotnet test
     - name: Pack with dotnet
-      run: dotnet pack Mogawinch.TicTacToe.Gameplay/Mogawinch.TicTacToe.Gameplay.csproj --output nuget-packages --configuration Release -p:PackageVersion=${{ steps.gitversion.outputs.nuGetVersionV2 }}-${{ steps.gitversion.outputs.CommitsSinceVersionSourcePadded }} 
+      run: dotnet pack Mogawinch.TicTacToe.Gameplay/Mogawinch.TicTacToe.Gameplay.csproj --output nuget-packages --configuration Release -p:PackageVersion=$RELEASE_VERSION 
     - name: Push with dotnet
       run: dotnet nuget push nuget-packages/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
 
